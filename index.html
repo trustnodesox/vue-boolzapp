@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   </head>
   <body>
-    <div id="#root">
+    <div id="root">
       <div class="container">
         <div class="top-green">
 
@@ -17,28 +18,62 @@
           <div class="navbar">
             <div class="navbar left">
               <div class="propic">
-
+              <img src="img/avatar_2.jpg" alt="propic">
               </div>
               <div class="propic-icons">
-
+                <i class="fas fa-circle-notch"></i>
+                <i class="fas fa-comment-alt"></i>
+                <i class="fas fa-ellipsis-v"></i>
               </div>
             </div>
             <div class="navbar right">
               <div class="contact">
+                <div class="contact-avatar">
+                  <img src="`img/avatar${contacts[index].avatar}`" alt="">
+                  <span class="contact-name">{{contacts[index].name}}</span> <br>
+                  <small lass="time">Ultimo accesso {{ultimoAccesso(index)}}</small>
+                </div>
 
               </div>
               <div class="contact-actions">
-
+                <i class="fas fa-search"></i>
+                <i class="fas fa-paperclip"></i>
+                <i class="fas fa-ellipsis-v"></i>
               </div>
             </div>
           </div>
           <div class="main">
             <div class="contacts">
-
+              <div class="contact" @click="index = i" :class="(i == index) ? 'active' : ''" v-for="(contact, i) in contacts">
+                <div class="contact-logo">
+                  <img src="`img/avatar${contact.avatar}.jpg`" alt="">
+                </div>
+                <div class="contact-info">
+                  <h3>
+                    <span class="contact-name">{{ contact.name }}</span>
+                    <span class="time f-right">17.53</span>
+                  </h3>
+                  <small>Non poteva essere altrimenti</small>
+                </div>
+              </div>
             </div>
             <div class="chat">
-              <div class="write">
 
+                <div class="message-card" v-for="message in contacts[index].messages">
+                  <div class="message" :class="message.status">
+                    <span class="message-text">{{ message.text }}</span>
+                    <span class="message-time">{{getTime(message.date) }}</span>
+                    <span class="message-options"></span>
+                  </div>
+
+                </div>
+
+
+              <div class="left-messages">
+
+              </div>
+              <div class="write">
+                <input @keyup.enter="invia" v-model="message" type="text" name="" value="">
               </div>
             </div>
           </div>
@@ -46,5 +81,9 @@
       </div>
     </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="dati.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
   </body>
 </html>

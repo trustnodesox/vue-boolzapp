@@ -39,19 +39,68 @@
 
 .navbar{
   display: flex;
+  flex-direction: row;
   height: 10%;
   width: 100%;
   background-color: white;
 }
 
 .left{
+  display: flex;
   width: 30%;
   height: 100%;
-  background-color: black;
+  justify-content: space-between;
 }
 
+.propic img{
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.propic-icons{
+  display: flex;
+  align-items: center;
+}
+
+.propic-icons i{
+  font-size: 25px;
+  padding: 5px;
+}
+
+
 .right{
+  display: flex;
+  justify-content: space-between;
   width: 70%;
+  height: 100%;
+}
+
+.contact-actions{
+  display: flex;
+  align-items: center;
+}
+
+.contact-actions i{
+  font-size: 25px;
+  padding: 10px;
+}
+
+.contact{
+  width: 100%;
+  height: 20%;
+}
+
+.contact-logo{
+  width: 50px;
+  height: 50px;
+
+}
+
+.contact-logo img{
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 50%;
 }
 
 .main{
@@ -68,14 +117,33 @@
 
 .chat{
   display: flex;
-  flex-direction: column
+  flex-direction: column;
   height: 100%;
   width: 70%;
   background-color: pink;
 }
 
+.right-messages{
+  width: 200px;
+  position: absolute;
+  right: 200px;
+}
+
+.sent{
+  background-color: white;
+  position: relative;
+  right: 0;
+
+}
+.received{
+  background-color: green;
+  position: relative;
+  left: 0;
+}
+
 .write{
   align-self: flex-end;
+  bottom: 0;
   width: 100%;
   height: 10%;
   background-color: orange;
