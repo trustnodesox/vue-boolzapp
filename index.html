@@ -27,13 +27,14 @@
               </div>
             </div>
             <div class="navbar right">
-              <div class="contact">
+              <div id="contact">
                 <div class="contact-avatar">
-                  <img src="`img/avatar${contacts[index].avatar}`" alt="">
+                  <img :src="`img/avatar${contacts[index].avatar}.jpg`" alt="">
+                </div>
+                <div class="contact-active-info">
                   <span class="contact-name">{{contacts[index].name}}</span> <br>
                   <small lass="time">Ultimo accesso {{ultimoAccesso(index)}}</small>
                 </div>
-
               </div>
               <div class="contact-actions">
                 <i class="fas fa-search"></i>
@@ -44,37 +45,39 @@
           </div>
           <div class="main">
             <div class="contacts">
-              <div class="contact" @click="index = i" :class="(i == index) ? 'active' : ''" v-for="(contact, i) in contacts">
+              <div class="search">
+                <i class="fas fa-search"></i>
+                <input type="text" v-model="search" placeholder="Cerca un contatto o inizia una conversazione"/>
+              </div>
+              <div class="contact" @click="index = i" :class="(i == index) ? 'active' : ''" v-for="(contact, i) in contacts" v-if="contact.name.toLowerCase().includes(search)">
                 <div class="contact-logo">
-                  <img src="`img/avatar${contact.avatar}.jpg`" alt="">
+                  <img :src="`img/avatar${contact.avatar}.jpg`" alt="">
                 </div>
                 <div class="contact-info">
                   <h3>
                     <span class="contact-name">{{ contact.name }}</span>
-                    <span class="time f-right">17.53</span>
                   </h3>
+                    <span class="time">17.53</span>
                   <small>Non poteva essere altrimenti</small>
                 </div>
               </div>
             </div>
             <div class="chat">
-
                 <div class="message-card" v-for="message in contacts[index].messages">
                   <div class="message" :class="message.status">
                     <span class="message-text">{{ message.text }}</span>
                     <span class="message-time">{{getTime(message.date) }}</span>
-                    <span class="message-options"></span>
                   </div>
-
                 </div>
-
-
-              <div class="left-messages">
-
-              </div>
-              <div class="write">
-                <input @keyup.enter="invia" v-model="message" type="text" name="" value="">
-              </div>
+                <div class="write">
+                  <div class="emoji">
+                    <i class="far fa-smile"></i>
+                  </div>
+                  <input @keyup.enter="invia" v-model="message" type="text" name="" value="">
+                  <div class="press">
+                    <i class="fas fa-paper-plane"></i>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

@@ -3,7 +3,8 @@ var app = new Vue({
   data: {
     index: 0,
     contacts: contacts,
-    message: ''
+    message: '',
+    search: '',
   },
   methods: {
     ultimoAccesso: function(index){
@@ -19,14 +20,24 @@ var app = new Vue({
       return `${hours}:${minutes}`;
     },
     invia: function(){
+      const contattoAttivo = this.index
       const date = dayjs().format('DD/MM/YYYY HH:mm:ss')
       const message = {
         date,
         text: this.message,
         status: 'sent'
       }
-      this.contacts[this.index].messages.push(message);
-      this.message = ''
+      this.contacts[contattoAttivo].messages.push(message);
+      this.message = '';
+      setTimeout(() => {
+        const date = dayjs().format('DD/MM/YYYY HH:mm:ss')
+        const message = {
+          date,
+          text: 'Ciao bello',
+          status: 'received'
+        }
+        this.contacts[contattoAttivo].messages.push(message);
+      }, 1000)
     }
   }
 });
